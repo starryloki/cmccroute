@@ -2,17 +2,17 @@
 mkdir -p ./pbr
 cd ./pbr
 
-# AS4809 BGP
-wget --no-check-certificate -c -O CN.txt https://raw.githubusercontent.com/soffchen/GeoIP2-CN/release/CN-ip-cidr.txt
+# CMCC BGP
+wget --no-check-certificate -c -O cmcc.txt https://ispip.clang.cn/cmcc_cidr.txt
 
 {
 echo "/ip firewall address-list"
 
-for net in $(cat CN.txt) ; do
-  echo "add list=CN address=$net comment=AS4809"
+for net in $(cat cmcc.txt) ; do
+  echo "add list=cmcc address=$net comment=cmcc-route"
 done
 
-} > ../CN.rsc
+} > ../cmcc.rsc
 
 cd ..
 rm -rf ./pbr
