@@ -6,10 +6,10 @@ cd ./pbr
 wget --no-check-certificate -c -O cmcc.txt https://ispip.clang.cn/cmcc_cidr.txt
 
 {
-echo "/ip firewall address-list"
+echo "/ip route"
 
 for net in $(cat cmcc.txt) ; do
-  echo "add list=cmcc address=$net comment=cmcc-route"
+  echo "add dst-address=$net gateway=pppoe-cmcc routing-table=main comment=cmcc-route"
 done
 
 } > ../cmcc.rsc
